@@ -2,9 +2,13 @@ import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 import java.time.LocalDate;
-public class stockTracker {
+
+
+
+public class stockTracker{
 public static void main(String[] args) throws Exception {
-        readDB();
+        //readDB();
+        SnoDB();
 //        updatebyUser();
 }
     public static void insertUpdate1() throws Exception{
@@ -61,7 +65,7 @@ public static void main(String[] args) throws Exception {
     }
 
 
-public static void readDB() throws Exception{
+public static void readDB() throws Exception {
     String url = "jdbc:mysql://localhost:3306/stockTracker";
     String userName = "root";
     String password = "Mugunthan@mysql";
@@ -71,7 +75,7 @@ public static void readDB() throws Exception{
     Statement st = conn.createStatement();
     ResultSet rs = st.executeQuery(query);
 
-    while(rs.next()) {
+    while (rs.next()) {
         System.out.println("Sno: " + rs.getInt(1));
         System.out.println("StockName: " + rs.getString(2));
         System.out.println("StockPrice: " + rs.getFloat(3));
@@ -80,10 +84,27 @@ public static void readDB() throws Exception{
         System.out.println("StockCount: " + rs.getFloat(6));
         System.out.println("BrokerName: " + rs.getString(7));
 
-        for(int i=0; i < 50; i++){
+        for (int i = 0; i < 50; i++) {
             System.out.print("-");
         }
         System.out.println();
     }
 }
-        }
+public static void SnoDB() throws SQLException {
+
+    String url = "jdbc:mysql://localhost:3306/stockTracker";
+    String userName = "root";
+    String password ="Mugunthan@mysql";
+    String query = "select Sno from stockDetails";
+
+    Connection conn = DriverManager.getConnection(url, userName, password);
+    Statement st = conn.createStatement();
+    ResultSet rs = st.executeQuery(query);
+
+    while(rs.next()){
+        System.out.println("Sno: " + rs.getInt(1));
+    }
+
+}
+
+}
