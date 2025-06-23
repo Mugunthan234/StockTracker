@@ -15,7 +15,8 @@ public static void main(String[] args) throws Exception {
 //        StockName();
 //stockPrice();
 //    buyPrice();
-    buyDate();
+//    buyDate();
+//    buyCount();
 }
  public static void insertUpdate1() throws Exception{
         String url = "jdbc:mysql://localhost:3306/stockTracker";
@@ -138,7 +139,7 @@ public static void SnoDB() throws SQLException {
     ResultSet rs = st.executeQuery(query);
 
     while(rs.next()){
-        System.out.println("stockPrice: " + rs.getInt(1));
+        System.out.println("stockPrice: " + rs.getFloat(1));
     }
     }
 
@@ -153,7 +154,7 @@ public static void SnoDB() throws SQLException {
         ResultSet rs = st.executeQuery(query);
 
         while(rs.next()){
-            System.out.println("buyPrice: " + rs.getInt(1));
+            System.out.println("buyPrice: " + rs.getFloat(1));
         }
     }
     public static void buyDate() throws Exception{
@@ -170,4 +171,19 @@ public static void SnoDB() throws SQLException {
             System.out.println("buyDate: " + rs.getDate(1));
         }
     }
+    public static void buyCount() throws Exception{
+        String url = "jdbc:mysql://localhost:3306/stockTracker";
+        String userName = "root";
+        String password = "Mugunthan@mysql";
+        String query = "select stock_BuyCount from stockDetails";
+
+        Connection conn = DriverManager.getConnection(url,userName,password);
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery(query);
+
+        while(rs.next()){
+            System.out.println("BuyCount: " + rs.getFloat(1));
+        }
     }
+    }
+
