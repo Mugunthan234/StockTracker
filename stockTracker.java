@@ -17,6 +17,7 @@ public static void main(String[] args) throws Exception {
 //    buyPrice();
 //    buyDate();
 //    buyCount();
+    brokerName();
 }
  public static void insertUpdate1() throws Exception{
         String url = "jdbc:mysql://localhost:3306/stockTracker";
@@ -183,6 +184,20 @@ public static void SnoDB() throws SQLException {
 
         while(rs.next()){
             System.out.println("BuyCount: " + rs.getFloat(1));
+        }
+    }
+    public static void brokerName() throws Exception{
+        String url = "jdbc:mysql://localhost:3306/stockTracker";
+        String userName = "root";
+        String password = "Mugunthan@mysql";
+        String query = "select Broker_Name from stockDetails";
+
+        Connection conn = DriverManager.getConnection(url,userName,password);
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery(query);
+
+        while(rs.next()){
+            System.out.println("BrokerName:"+ rs.getString(1));
         }
     }
     }
