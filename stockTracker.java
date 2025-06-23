@@ -7,9 +7,10 @@ import java.time.LocalDate;
 
 public class stockTracker{
 public static void main(String[] args) throws Exception {
-        //readDB();
-        SnoDB();
+//        readDB();
+//        SnoDB();
 //        updatebyUser();
+          StockName();
 }
     public static void insertUpdate1() throws Exception{
         String url = "jdbc:mysql://localhost:3306/stockTracker";
@@ -105,6 +106,20 @@ public static void SnoDB() throws SQLException {
         System.out.println("Sno: " + rs.getInt(1));
     }
 
-}
+}public static void StockName() throws Exception{
+    String url = "jdbc:mysql://localhost:3306/stockTracker";
+    String userName = "root";
+    String password = "Mugunthan@mysql";
+    String query = "select Stock_Name from stockDetails";
+
+    Connection conn = DriverManager.getConnection(url, userName,password);
+    Statement st = conn.createStatement();
+    ResultSet rs = st.executeQuery(query);
+
+    while(rs.next()){
+        System.out.println("StockName "+ rs.getString(1));
+    }
+
+    }
 
 }
