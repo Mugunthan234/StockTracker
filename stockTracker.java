@@ -139,4 +139,5 @@ public static void SnoDB() throws SQLException {
         System.out.println("stockPrice: " + rs.getInt(1));
     }
     }
+
 }
