@@ -13,9 +13,10 @@ public static void main(String[] args) throws Exception {
 //        SnoDB();
 //        updatebyUser();
 //        StockName();
-stockPrice();
+//stockPrice();
+    buyPrice();
 }
-    public static void insertUpdate1() throws Exception{
+ public static void insertUpdate1() throws Exception{
         String url = "jdbc:mysql://localhost:3306/stockTracker";
         String userName = "root";
         String password = "root";
@@ -140,4 +141,18 @@ public static void SnoDB() throws SQLException {
     }
     }
 
-}
+    public static void buyPrice() throws Exception{
+        String url = "jdbc:mysql://localhost:3306/stockTracker";
+        String userName = "root";
+        String password = "Mugunthan@mysql";
+        String query = "select stock_BuyPrice from stockDetails";
+
+        Connection conn = DriverManager.getConnection(url,userName,password);
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery(query);
+
+        while(rs.next()){
+            System.out.println("buyPrice: " + rs.getInt(1));
+        }
+    }
+    }
