@@ -1,4 +1,3 @@
-import com.mysql.cj.protocol.x.ResultMessageListener;
 
 import java.sql.*;
 import java.sql.Date;
@@ -17,6 +16,7 @@ public static void main(String[] args) throws Exception {
 //      buyDate();
 //      buyCount();
 //      brokerName();
+//      System.out.println("hi VS Code");
 }
 public static void updatebyUser() throws Exception{
         Scanner sc = new Scanner(System.in);
@@ -202,6 +202,5 @@ public static void investedAmount() throws Exception{
                 double totalAmount = rs.getDouble("total_StockPrice");
                 System.out.println("Total Amount Invested: " + totalAmount);
             }
-
         }
 }
