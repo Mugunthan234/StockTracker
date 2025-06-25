@@ -1,14 +1,15 @@
 
 import java.sql.*;
 import java.sql.Date;
+import java.text.StringCharacterIterator;
 import java.util.*;
 import java.time.LocalDate;
 
 public class stockTracker{
 public static void main(String[] args) throws Exception {
-//      readDB();
+      readDB();
 //      SnoDB();
-//      updatebyUser();
+      updatebyUser();
 //      StockName();
 //      stockPrice();
 //      buyPrice();
@@ -17,10 +18,11 @@ public static void main(String[] args) throws Exception {
 //      buyCount();
 //      brokerName();
 //      System.out.println("hi VS Code");
+
 }
 public static void updatebyUser() throws Exception{
         Scanner sc = new Scanner(System.in);
-     LocalDate today = LocalDate.now();
+        LocalDate today = LocalDate.now();
 
         System.out.println("Sno: ");
         int Sno = sc.nextInt();
@@ -46,13 +48,27 @@ public static void updatebyUser() throws Exception{
         Connection conn = DriverManager.getConnection(url, userName, password);
         PreparedStatement st = conn.prepareStatement(query);
 
+        String[] word1 = stockName.split(" ");
+        String result1 = "";
+        for (String word : word1) {
+            if (!word.isEmpty()) {
+                result1 += Character.toUpperCase(word.charAt(0)) + word.substring(1) + " ";}}
+        String stockNameUC = result1.trim();
+
+        String[] word2 = brokerName.split(" ");
+        String result2 = "";
+        for (String word : word2) {
+            if (!word.isEmpty()) {
+                result2 += Character.toUpperCase(word.charAt(0)) + word.substring(1) + " ";}}
+        String brokerNameUC = result2.trim();
+
         st.setInt(1, Sno);
-        st.setString(2, stockName);
+        st.setString(2, stockNameUC);
         st.setFloat(3, stockPrice);
         st.setFloat(4, buyPrice);
         st.setDate(5, Date.valueOf(today));
         st.setFloat(6,stockCount);
-        st.setString(7, brokerName);
+        st.setString(7, brokerNameUC);
 
         int r = st.executeUpdate();
 
@@ -201,6 +217,6 @@ public static void investedAmount() throws Exception{
             if (rs.next()) {
                 double totalAmount = rs.getDouble("total_StockPrice");
                 System.out.println("Total Amount Invested: " + totalAmount);
-            }
         }
+    }
 }
